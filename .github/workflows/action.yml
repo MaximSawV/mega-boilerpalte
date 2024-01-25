@@ -6,7 +6,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.actor }}/docker-image-github:latest
-  DOCKER_TOKEN: ${{ secrets.PAT }}
 
 jobs:
   publish:
