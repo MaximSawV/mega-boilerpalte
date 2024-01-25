@@ -6,8 +6,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.actor }}/docker-image-github:latest
-  DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-
+  
 jobs:
   publish:
     name: publish iamge
@@ -19,7 +18,7 @@ jobs:
       - name: Login
         working-directory: ./node-backend
         run: |
-          echo ${{ env.DOCKER_TOKEN }} | docker login ghcr.io -u ${{ github.actor }}
+          echo ${{ secrets.DOCKER_TOKEN }} | docker login ghcr.io -u ${{ github.actor }}
           --password-stdin
 
       - name: Build and Publish
