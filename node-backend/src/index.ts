@@ -7,7 +7,7 @@ const app: Express = express();
 const port = process.env.NODE_PORT || 8000;
 
 app.get("/", (req: Request, res: Response) => {
-	res.send("FUCK YOU Zille!!!");
+	res.send("Hallo Welt");
 });
 
 app.get("/1", (req: Request, res: Response) => {
