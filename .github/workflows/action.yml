@@ -33,18 +33,15 @@ jobs:
 
     steps:
       - name: install ssh keys
-        working-directory: ./node-backend
         run: |
           install -m 600 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SSH_HOST }} ~/.ssh/known_hosts
 
       - name: install ssh keys
-        working-directory: ./node-backend
         run: |
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }}
           && docker compose up -d && exit"
 
       - name: cleanup
-        working-directory: ./node-backend
         run: rm -rf ~/.ssh
