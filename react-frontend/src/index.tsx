@@ -8,5 +8,6 @@ const root = createRoot(rootElement!);
 root.render (
 	<StrictMode>
 		<div>Hey</div>
+		<input type={"text"} />
 	</StrictMode>
 )
