@@ -5,7 +5,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: maximsawv/docker-image-github:latest
+  BACKEND_IMAGE_NAME: maximsawv/docker-image-github:latest
+  FRONTEND_IMAGE_NAME: maximsawv/mega-boilerplate-nginx:latest
   
 jobs:
   publish:
@@ -20,11 +21,17 @@ jobs:
         run: |
           docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Build and Publish
+      - name: Build and Publish Backend
         working-directory: ./node-backend
         run: |
-          docker build . --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          docker build . --tag ${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE_NAME }}
+          docker push ${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE_NAME }}
+
+      - name: Build and Publish Frontend
+        working-directory: ./react-frontend
+        run: |
+          docker build . --tag ${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE_NAME }}
+          docker push ${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE_NAME }}
 
   deploy:
     needs: publish
