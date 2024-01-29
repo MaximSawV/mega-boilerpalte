@@ -40,6 +40,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          files: 'docker-compose.yml'
+
       - name: install ssh keys
         run: |
           install -m 600 -D /dev/null ~/.ssh/id_rsa
@@ -47,8 +50,6 @@ jobs:
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
 
       - name: Upload DockerComposeYml
-        with:
-          files: 'docker-compose.yml'
         run: scp docker-compose.yml ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/app/
 
       - name: connect and pull
