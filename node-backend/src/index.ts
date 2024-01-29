@@ -11,7 +11,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.get("/1", (req: Request, res: Response) => {
-	res.send("1 Express + TypeScript Server");
+	res.send("Trigger Workflow");
 });
 
 app.listen(port, () => {
