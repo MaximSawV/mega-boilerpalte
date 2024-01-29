@@ -1,7 +1,7 @@
 services:
 
   node:
-    image: ghcr.io/maximsawv/docker-image-github:latest
+    image: ghcr.io/maximsawv/mega-boilerplate-node:latest
     ports:
       - 8000:8000
 

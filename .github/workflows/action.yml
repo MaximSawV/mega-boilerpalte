@@ -2,11 +2,14 @@ name: Publish
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - node-backend/**
+      - react-frontend/**
 
 env:
   REGISTRY: ghcr.io
-  BACKEND_IMAGE_NAME: maximsawv/docker-image-github:latest
-  FRONTEND_IMAGE_NAME: maximsawv/mega-boilerplate-nginx:latest
+  BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_NAME }}/mega-boilerplate-node:latest
+  FRONTEND_IMAGE_NAME: ${{ secrets.DOCKER_NAME }}/mega-boilerplate-nginx:latest
   
 jobs:
   publish:
