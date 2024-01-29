@@ -46,6 +46,8 @@ jobs:
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
 
       - name: Upload DockerComposeYml
+        with:
+          files: 'docker-compose.yml'
         run: scp docker-compose.yml ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/app/
 
       - name: connect and pull
